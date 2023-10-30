@@ -1,0 +1,12 @@
+---
+AllCops:
+  UseCache: false
+  TargetRubyVersion: 3.0.6
+  Exclude:
+    - db/migrate/*
+    - db/schema.rb
+    - bin/*
+    - public/**/*
+    - tmp/**/*
+    - config/environments/*
+    - spec/rails_helper.rb
