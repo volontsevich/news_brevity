@@ -16,3 +16,7 @@ Style/FrozenStringLiteralComment:
 
 Style/Documentation:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/concepts/**/*

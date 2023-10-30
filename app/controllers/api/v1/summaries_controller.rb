@@ -4,8 +4,13 @@ module Api
   module V1
     class SummariesController < ApplicationController
       def show
-        allowed_params = params.permit(:id, :user_uid).to_h
-        render json: allowed_params, status: :ok
+        result = Summary::Operation::Generate.call(params: params)
+
+        if result.success?
+          render json: result[:json]
+        else
+          render json: { error: 'Invalid input' }, status: :unprocessable_entity
+        end
       end
     end
   end
