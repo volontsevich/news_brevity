@@ -41,6 +41,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman'
+  gem 'byebug'
   gem 'rubocop', require: false
   gem 'rubocop-checkstyle_formatter', require: false
 end

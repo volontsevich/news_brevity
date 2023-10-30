@@ -19,6 +19,8 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    stdin_open: true
+    tty: true
     environment:
       RAILS_ENV: development
       RAILS_LOG_TO_STDOUT: 'true'
