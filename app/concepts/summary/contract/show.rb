@@ -1,7 +1,8 @@
 module Summary::Contract
   class Show < Dry::Validation::Contract
     params do
-      optional(:user_id).filled(:string)
+      optional(:channel_name).filled(:string)
+      optional(:hours).filled(:integer)
     end
   end
 end

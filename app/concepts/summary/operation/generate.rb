@@ -1,3 +1,4 @@
+require 'telegram_service'
 module Summary::Operation
   class Generate < Trailblazer::Operation
     step Model(Summary, :find_by)
@@ -10,7 +11,17 @@ module Summary::Operation
     end
 
     def generate_json(ctx, model:, **)
-      ctx[:json] = { id: model.id, user_uid: model.name }
+      service = TelegramService.new
+      channel_name = ctx[:params][:channel_name] || 'huyovy_kharkiv'
+      hours = ctx[:params][:hours] || 24
+      response = service.get_messages(channel_name: channel_name, hours: hours)
+      if response.success?
+        messages = response.parsed_response
+      else
+        Rails.logger.error("Failed to fetch messages: #{response.body}")
+      end
+
+      ctx[:json] = { id: model.id, messages: messages }
     end
   end
 end

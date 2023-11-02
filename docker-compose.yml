@@ -4,6 +4,8 @@ services:
     image: postgres
     volumes:
       - db_volume:/var/lib/postgresql/data:cached
+    networks:
+      - my_network
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: development
@@ -21,11 +23,28 @@ services:
       - db
     stdin_open: true
     tty: true
+    networks:
+      - my_network
     environment:
       RAILS_ENV: development
       RAILS_LOG_TO_STDOUT: 'true'
+
+  telegram_bot:
+    build:
+      context: ./telegram_service
+    volumes:
+      - ./telegram_service:/app
+    ports:
+      - "5000:5000"
+    networks:
+      - my_network
+    env_file:
+      - '.env'
 
 volumes:
   db_volume:
   web_bundler_cache:
 
+networks:
+  my_network:
+    driver: bridge

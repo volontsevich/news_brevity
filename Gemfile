@@ -14,6 +14,8 @@ gem 'dry-validation'
 gem 'trailblazer'
 gem 'trailblazer-rails'
 
+gem 'httparty'
+
 gem 'bootsnap', require: false
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
