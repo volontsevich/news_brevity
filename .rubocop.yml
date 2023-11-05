@@ -20,3 +20,6 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Exclude:
     - app/concepts/**/*
+
+Metrics/AbcSize:
+  Max: 30
